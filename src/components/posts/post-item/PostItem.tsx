@@ -13,10 +13,10 @@ interface PostItemProps {
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
   return (
-    <li className={styles.postItem}>
+    <div className={styles.postItem}>
       <h3>{post.title}</h3>
       <p>{post.body}</p>
-    </li>
+    </div>
   )
 }
 

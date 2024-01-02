@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.postListContainer {
+  width: 50%;
+  float: left;
+}
