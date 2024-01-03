@@ -5,6 +5,7 @@
 .postList h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
+  margin-left: 20px;
 }
 
 .postList ul {
@@ -14,9 +15,29 @@
 
 .postList li {
   border: 1px solid #ccc;
+  border-radius: 5px;
   margin-bottom: 10px;
+  margin-left: 20px;
   padding: 10px;
 }
 .postList li a {
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  .postList li {
+
+    margin-left: 10px;
+    margin:  20px;
+
+  }
+
+  .postList h2 {
+    
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+}
+
+

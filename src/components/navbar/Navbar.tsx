@@ -6,9 +6,10 @@ const Navbar = () => {
       <div className={styles.navbarLogo}>Logo</div>
       <div className={styles.navbarLinks}>
         <a href='#home'>Home</a>
-        <a href='#about'>About</a>
-        <a href='#services'>Services</a>
+        <a href='#about'>About us</a>
+        <a href='#about'>Contribute</a>
         <a href='#contact'>Contact</a>
+        <button>Sign in</button>
       </div>
     </nav>
   )

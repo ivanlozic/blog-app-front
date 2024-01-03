@@ -2,12 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PostList.module.css';
 import PostItem from '../post-item/PostItem';
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+import { Post } from '../../../constants/constants';
 
 interface PostListProps {
   posts: Post[];
