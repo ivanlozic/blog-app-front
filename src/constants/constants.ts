@@ -3,6 +3,8 @@ export interface Post {
   author: string
   title: string
   body: string
+  image?: string
+  hashtags?: string[]
 }
 
 export const posts: Post[] = [
@@ -30,4 +32,13 @@ export const posts: Post[] = [
     title: 'Post 4',
     body: 'This is the content of post 4.'
   }
+]
+
+export const topics = [
+  'React',
+  'JavaScript',
+  'Python',
+  'Node.js',
+  'CSS',
+  'HTML'
 ]

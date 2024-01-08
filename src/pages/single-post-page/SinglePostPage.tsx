@@ -1,18 +1,12 @@
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { posts } from '../../constants/constants'
-import styles from './SinglePostPage.module.css'
-import { Routes } from '../../routes/routesList'
-import img1 from '../../assets/images/1.jpg'
-import img2 from '../../assets/images/2.jpg'
-import img3 from '../../assets/images/3.jpg'
-import img4 from '../../assets/images/4.jpg'
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { posts } from '../../constants/constants';
+import styles from './SinglePostPage.module.css';
+import { Routes } from '../../routes/routesList';
 
 const SinglePostPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const post = posts.find((p) => p.id.toString() === id)
-  const images = [img1, img2, img3, img4]
-  const imageIndex = post!.id - 1
+  const { id } = useParams<{ id: string }>();
+  const post = posts.find((p) => p.id.toString() === id);
 
   if (!post) {
     return (
@@ -22,7 +16,7 @@ const SinglePostPage: React.FC = () => {
           <button className={styles.button}>Go to Posts</button>
         </Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -30,13 +24,13 @@ const SinglePostPage: React.FC = () => {
       <div className={styles.postItem}>
         <h3>{post.title}</h3>
         <p>{post.body}</p>
-        <img src={images[imageIndex]} width={300} height={300} />
+        {post.image && <img src={post.image} alt='Post Image' width={300} height={300} />}
       </div>
       <Link to={Routes.ROOT} className={styles.link}>
         <button className={styles.button}>Go to Posts</button>
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default SinglePostPage
+export default SinglePostPage;

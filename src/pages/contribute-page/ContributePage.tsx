@@ -1,16 +1,55 @@
 import React, { useState } from 'react'
 import styles from './ContributePage.module.css'
+import { Post, posts } from '../../constants/constants'
 
 const ContributePage = () => {
   const [title, setTitle] = useState('')
-  const [subtitle, setSubtitle] = useState('')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState<File | null>(null)
   const [text, setText] = useState('')
+  const [selectedHashtags, setSelectedHashtags] = useState<string[]>([])
+
+  const topics = ['React', 'JavaScript', 'Python', 'Node.js', 'CSS', 'HTML']
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0]
+    if (file) {
+      setImage(file)
+    }
+  }
+
+  const toggleHashtag = (hashtag: string) => {
+    const isSelected = selectedHashtags.includes(hashtag)
+    setSelectedHashtags((prevSelected) => {
+      if (isSelected) {
+        return prevSelected.filter((selected) => selected !== hashtag)
+      } else {
+        return [...prevSelected, hashtag]
+      }
+    })
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    console.log('Form submitted:', { title, subtitle, image, text })
+    if (image) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        const newPost: Post = {
+          id: posts.length + 1,
+          author: 'Your Name',
+          title,
+          body: text,
+          image: reader.result as string,
+          hashtags: selectedHashtags
+        }
+
+        posts.push(newPost)
+
+        console.log('Updated Posts:', posts)
+      }
+
+      reader.readAsDataURL(image)
+    }
   }
 
   return (
@@ -29,22 +68,12 @@ const ContributePage = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor='subtitle'>Subtitle:</label>
-          <input
-            type='text'
-            id='subtitle'
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.formGroup}>
           <label htmlFor='image'>Upload Image:</label>
           <input
             type='file'
             id='image'
             accept='image/*'
-            onChange={(e) => setImage(e.target.value)}
+            onChange={handleFileChange}
           />
         </div>
 
@@ -58,7 +87,29 @@ const ContributePage = () => {
           ></textarea>
         </div>
 
-        <button type='submit'>Submit</button>
+        <div className={styles.formGroup}>
+          <label htmlFor='hashtags'>Select Hashtags:</label>
+          <div className={styles.hashtagsContainer}>
+            {topics.map((topic) => (
+              <button
+                key={topic}
+                type='button'
+                className={
+                  selectedHashtags.includes(topic)
+                    ? styles.selectedHashtag
+                    : styles.hashtag
+                }
+                onClick={() => toggleHashtag(topic)}
+              >
+                {topic}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <button className={styles.submitButton} type='submit'>
+          Submit
+        </button>
       </form>
     </div>
   )
