@@ -1,3 +1,4 @@
+import NotFoundPage from '../pages/404/NotFoundPage'
 import ContributePage from '../pages/contribute-page/ContributePage'
 import HomePage from '../pages/home-page/HomePage'
 import SinglePostPage from '../pages/single-post-page/SinglePostPage'
@@ -21,6 +22,10 @@ const routesList = [
   {
     path: Routes.CONTRIBUTE,
     element: <ContributePage />
+  },
+  {
+    path: Routes.NOT_FOUND,
+    element: <NotFoundPage />
   }
 ]
 
