@@ -5,6 +5,14 @@
   padding: 10px;
   margin-bottom: 10px;
 }
+.image {
+  filter: blur(20px);
+  transition: filter 0.5s ease;
+}
+
+.imageLoaded {
+  filter: blur(0);
+}
 
 .postItem h3 {
   font-size: 1.2rem;
@@ -14,12 +22,6 @@
 .postItem p {
   margin: 0;
   color: #555;
-}
-
-.postItem img {
-  width: 200px;
-  height: 150px;
-  margin-left: 10px;
 }
 
 @media (max-width: 768px) {

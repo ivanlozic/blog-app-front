@@ -18,7 +18,13 @@ const SinglePostPage: React.FC = () => {
         <h3>{post.title}</h3>
         <p>{post.body}</p>
         {post.image && (
-          <img src={post.image} alt='Post Image' width={300} height={300} />
+          <img
+            src={post.image}
+            alt='Post Image'
+            width={300}
+            height={300}
+            loading='lazy'
+          />
         )}
       </div>
       <Link to='/' className={styles.link}>
