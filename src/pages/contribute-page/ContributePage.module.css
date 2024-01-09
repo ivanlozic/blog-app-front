@@ -1,3 +1,5 @@
+/* ContributePage.module.css */
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -12,7 +14,7 @@ h1 {
   color: #333;
 }
 
-form {
+.form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,18 +34,7 @@ label {
 
 input[type='text'],
 textarea,
-select {
-  width: 100%;
-  padding: 12px;
-  box-sizing: border-box;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  font-size: 16px;
-  color: #333;
-}
-
+select,
 input[type='file'] {
   width: 100%;
   padding: 12px;
@@ -77,10 +68,9 @@ input[type='file'] {
   flex-wrap: wrap;
 }
 
-.hashtag {
+.hashtag, .selectedHashtag {
   margin: 5px;
   padding: 8px;
-  background-color: #3498db;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -88,23 +78,16 @@ input[type='file'] {
   transition: background-color 0.3s ease;
 }
 
-.hashtag:hover {
-  background-color: #2980b9;
+.hashtag {
+  background-color: #3498db;
 }
 
 .selectedHashtag {
-  margin: 5px;
-  padding: 8px;
   background-color: #2ecc71;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.selectedHashtag:hover {
-  background-color: #27ae60;
+.hashtag:hover, .selectedHashtag:hover {
+  background-color: #2980b9;
 }
 
 @media screen and (max-width: 600px) {

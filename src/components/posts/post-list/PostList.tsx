@@ -16,7 +16,7 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
         {posts.map((post) => (
           <li key={post.id}>
             <Link to={`/posts/${post.id}`} >
-              <PostItem post={post} />
+              <PostItem {...post} />
             </Link>
           </li>
         ))}

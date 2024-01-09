@@ -8,7 +8,6 @@ import TopicSelector from '../../components/topic-selector/TopicSelector'
 
 const HomePage: React.FC = () => {
   const handleTopicSelect = (topic: string) => {
-    // Handle the selected topic, you can perform some action or update state
     console.log(`Selected topic: ${topic}`)
   }
 
