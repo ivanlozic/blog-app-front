@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './PostList.module.css';
-import PostItem from '../post-item/PostItem';
-import { Post } from '../../../constants/constants';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styles from './PostList.module.css'
+import PostItem from '../post-item/PostItem'
+import { Post } from '../../interfaces/interfaces'
+import { Routes } from '../../../routes/routesList'
 
 interface PostListProps {
-  posts: Post[];
+  posts: Post[]
 }
 
 const PostList: React.FC<PostListProps> = ({ posts }) => {
@@ -15,14 +16,14 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
-            <Link to={`/posts/${post.id}`} >
+            <Link to={`${Routes.SINGLE_POST.replace(':id', String(post.id))}`}>
               <PostItem {...post} />
             </Link>
           </li>
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default PostList;
+export default PostList

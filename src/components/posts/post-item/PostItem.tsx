@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './PostItem.module.css'
-import { Post } from '../../../constants/constants'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import useImageLoad from '../../../hooks/useImageLoad'
+import { Post } from '../../interfaces/interfaces'
 
 const PostItem: React.FC<Post> = ({ author, title, body, image }) => {
   const { imageLoaded, handleImageLoad } = useImageLoad()

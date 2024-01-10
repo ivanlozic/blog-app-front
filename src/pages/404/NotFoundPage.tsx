@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './NotFoundPage.module.css'
+import { Routes } from '../../routes/routesList'
 
 const NotFoundPage: React.FC = () => {
   const navigate = useNavigate()
@@ -8,7 +9,7 @@ const NotFoundPage: React.FC = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigate('/')
+      navigate(Routes.HOME)
     }, countdown * 1000)
 
     const interval = setInterval(() => {

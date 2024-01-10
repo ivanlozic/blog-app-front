@@ -1,11 +1,4 @@
-export interface Post {
-  id: number
-  author: string
-  title: string
-  body: string
-  image?: string
-  hashtags?: string[]
-}
+import { Post } from '../components/interfaces/interfaces'
 
 export const posts: Post[] = [
   {

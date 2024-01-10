@@ -1,8 +1,8 @@
 import React from 'react'
-
-import { Post, posts } from '../../constants/constants'
+import { posts } from '../../constants/constants'
 import styles from './ContributePage.module.css'
 import ContributeForm, { FormValues } from './contribute-form/ContributeForm'
+import { Post } from '../../components/interfaces/interfaces'
 
 const ContributePage: React.FC = () => {
   const onSubmit = (data: FormValues) => {

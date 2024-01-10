@@ -4,7 +4,7 @@ import HomePage from '../pages/home-page/HomePage'
 import SinglePostPage from '../pages/single-post-page/SinglePostPage'
 
 export const Routes = {
-  ROOT: '/',
+  HOME: '/',
   SINGLE_POST: '/posts/:id',
   CONTRIBUTE: '/contribute',
   NOT_FOUND: '*'
@@ -12,7 +12,7 @@ export const Routes = {
 
 const routesList = [
   {
-    path: Routes.ROOT,
+    path: Routes.HOME,
     element: <HomePage />
   },
   {
