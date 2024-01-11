@@ -1,25 +1,19 @@
 import React, { useState } from 'react'
-import styles from './LogInModal.module.css'
-import { Link } from 'react-router-dom'
-import { Routes } from '../../../routes/routesList'
+import styles from './RegisterPage.module.css'
 
-interface LoginCredentials {
+interface RegisterCredentials {
   email: string
   password: string
+  confirmPassword: string
 }
 
-interface LogInModalProps {
-  isModalOpen?: boolean
-  onClose: () => void
-}
-
-const LogInModal = ({ isModalOpen, onClose }: LogInModalProps) => {
-  const [credentials, setCredentials] = useState<LoginCredentials>({
+const RegisterPage = () => {
+  const [credentials, setCredentials] = useState<RegisterCredentials>({
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   })
   const [errorMessage, setErrorMessage] = useState('')
-  const [isModalVisible] = useState(isModalOpen ?? false)
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCredentials({ ...credentials, email: event.target.value })
@@ -29,16 +23,28 @@ const LogInModal = ({ isModalOpen, onClose }: LogInModalProps) => {
     setCredentials({ ...credentials, password: event.target.value })
   }
 
+  const handleConfirmPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCredentials({ ...credentials, confirmPassword: event.target.value })
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (!credentials.email || !credentials.password) {
-      setErrorMessage('Please enter both email and password.')
+    if (
+      !credentials.email ||
+      !credentials.password ||
+      credentials.password !== credentials.confirmPassword
+    ) {
+      setErrorMessage(
+        'Please enter valid email, password, and confirm password.'
+      )
       return
     }
 
     try {
-      const response = await fetch('/api/zlogin', {
+      const response = await fetch('/api/register', {
         method: 'POST',
         body: JSON.stringify(credentials),
         headers: {
@@ -49,7 +55,7 @@ const LogInModal = ({ isModalOpen, onClose }: LogInModalProps) => {
       const data = await response.json()
 
       if (response.ok) {
-        onClose()
+        alert('Registration successful!')
       } else {
         setErrorMessage(data.error)
       }
@@ -59,21 +65,10 @@ const LogInModal = ({ isModalOpen, onClose }: LogInModalProps) => {
     }
   }
 
-  const handleOverlayClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    if (event.target === event.currentTarget) {
-      onClose()
-    }
-  }
-
   return (
-    <div
-      className={`${styles.modal} ${isModalVisible ? styles.visible : ''}`}
-      onClick={handleOverlayClick}
-    >
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <h2>Log In</h2>
+    <div className={styles.registerPage}>
+      <div className={styles.container}>
+        <h2>Register</h2>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div>
@@ -92,25 +87,30 @@ const LogInModal = ({ isModalOpen, onClose }: LogInModalProps) => {
             <input
               type='password'
               id='password'
-              value={credentials.email}
+              value={credentials.password}
               onChange={handlePasswordChange}
               required
               className={styles.input}
             />
           </div>
-          <button type='submit' className={styles.loginButton}>
-            Log In
+          <div>
+            <label htmlFor='confirmPassword'>Confirm Password:</label>
+            <input
+              type='password'
+              id='confirmPassword'
+              value={credentials.confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              required
+              className={styles.input}
+            />
+          </div>
+          <button type='submit' className={styles.registerButton}>
+            Register
           </button>
         </form>
-        <p>
-          Don't have an account? <Link to={Routes.REGISTER}>Register here</Link>
-        </p>
-        <button onClick={onClose} className={styles.closeButton}>
-          Close
-        </button>
       </div>
     </div>
   )
 }
 
-export default LogInModal
+export default RegisterPage
