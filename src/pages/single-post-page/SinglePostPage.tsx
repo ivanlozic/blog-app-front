@@ -6,7 +6,7 @@ import NotFoundPage from '../404/NotFoundPage'
 
 const SinglePostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
-  const post = posts.find((p) => p.id.toString() === id)
+  const post = posts.find((post) => post.id.toString() === id)
 
   if (!post) {
     return <NotFoundPage />

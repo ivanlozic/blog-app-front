@@ -23,7 +23,7 @@ const ContributeForm: React.FC<ContributeFormProps> = ({ onSubmit }) => {
   } = useForm<FormValues>()
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.container} onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.formGroup}>
         <label htmlFor='title'>Title:</label>
         <input

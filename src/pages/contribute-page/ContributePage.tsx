@@ -29,8 +29,7 @@ const ContributePage: React.FC = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <h1>Contribute Page</h1>
+    <div className={styles.containerBox}>
       <ContributeForm onSubmit={onSubmit} />
     </div>
   )
