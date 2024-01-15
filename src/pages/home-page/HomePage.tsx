@@ -17,6 +17,7 @@ const HomePage: React.FC = () => {
       <HeroSection />
       <div className={styles.postListContainer}>
         <PostList posts={posts} />
+        <p>Ovo je novi feature</p>
       </div>
       <div className={styles.topicSelectorContainer}>
         <TopicSelector onSelectTopic={handleTopicSelect} />
